@@ -4,6 +4,7 @@
     const bit = document.querySelector("#middle #bit");
     const switcher = document.getElementById("switch");
     const file = document.getElementById("drag-file");
+    const file_input = document.getElementById("file-input");
     let isText = true;
     let fileinfo;
 
@@ -21,12 +22,7 @@
     textarea.addEventListener("input",()=>{
         textarea.style.height = "auto";
         textarea.style.height = textarea.scrollHeight + 4 + "px" ;
-        if(textarea.textContent==""){
-            sendServer(textarea.value,bit.value,true);
-        }
-        else{
-            textarea.textContent=="";
-        }
+        sendServer(textarea.value,bit.value,true);
     });
 
     bit.addEventListener("input",()=>{
@@ -34,7 +30,6 @@
             sendServer(textarea.value,bit.value,true);
         else{
             sendServer(fileinfo,bit.value,false);
-            console.log(fileinfo,bit.value);
         }
     });
 
@@ -47,6 +42,7 @@
             file.style.display="inline-block";
             isText = false;
             localStorage.setItem("lor","r");
+            file.firstElementChild.textContent = "DRAG FILE OR CLICK";
         }
         else{
             switcher.lastElementChild.style.backgroundColor="#FF5F00";
@@ -81,8 +77,14 @@
         sendServer(e.dataTransfer.files[0],bit.value,false);
     });
 
-    function sendServer(content,bit,isText){
-        if(isText){
+    file_input.addEventListener("change",(e)=>{
+        file.firstElementChild.textContent=e.target.files[0].name;
+        fileinfo = e.target.files[0];
+        sendServer(e.target.files[0],bit.value,false);
+    });
+
+    function sendServer(content,bit,isTextt){
+        if(isTextt){
             fetch("/send-text",{
                 method:"POST",
                 body:JSON.stringify({
