@@ -8,6 +8,14 @@
     let isText = true;
     let fileinfo;
 
+    if(!localStorage.getItem("file-bit")){
+        localStorage.setItem("file-bit","BIT");
+    }
+
+    if(!localStorage.getItem("text-bit")){
+        localStorage.setItem("text-bit","BIT");
+    }
+
     if(localStorage.getItem("lor")=="r"){
         switcher.lastElementChild.style.backgroundColor="#FF9F66";
         switcher.firstElementChild.style.backgroundColor="#FF5F00";

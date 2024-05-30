@@ -10,15 +10,20 @@
     font-style: italic;
 }
 
-*{
-    box-sizing: border-box;
-}
-
 :root{
     --background:#fceeb8;
     --border: #002379;
     --do: #FF5F00;
     --o: #FF9F66;
+}
+
+::selection{
+    background-color: var(--border);
+    color: white;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 body{
