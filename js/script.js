@@ -15,9 +15,15 @@
         textarea.style.display="none";
         file.style.display="inline-block";
         isText = false;
+        if(localStorage.getItem("file-bit")){
+            bit.value=localStorage.getItem("file-bit");
+        }
     }
     else{
         textarea.focus();
+        if(localStorage.getItem("text-bit")){
+            bit.value=localStorage.getItem("text-bit");
+        }
     }
     textarea.addEventListener("input",()=>{
         textarea.style.height = "auto";
@@ -26,10 +32,14 @@
     });
 
     bit.addEventListener("input",()=>{
-        if(isText)
+        if(isText){
             sendServer(textarea.value,bit.value,true);
+            localStorage.setItem("text-bit",bit.value);
+        }
+
         else{
             sendServer(fileinfo,bit.value,false);
+            localStorage.setItem("file-bit",bit.value);
         }
     });
 
@@ -42,7 +52,10 @@
             file.style.display="inline-block";
             isText = false;
             localStorage.setItem("lor","r");
-            file.firstElementChild.textContent = "DRAG FILE OR CLICK";
+            bit.value=localStorage.getItem("file-bit");
+            if(fileinfo){
+                sendServer(fileinfo,bit.value,false);
+            }
         }
         else{
             switcher.lastElementChild.style.backgroundColor="#FF5F00";
@@ -53,6 +66,10 @@
             isText = true;
             localStorage.setItem("lor","l");
             textarea.focus();
+            bit.value=localStorage.getItem("text-bit");
+            if(textarea.value!=""){
+                sendServer(textarea.value,bit.value,true);
+            }
         }
     });
 
