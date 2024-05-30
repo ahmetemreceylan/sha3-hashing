@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/script.js"></script>
+</head>
+<body>
+    <div id="texts">
+        <div id="switch">
+            <div id="switch-left">TEXT</div>
+            <div id="switch-right">FILE</div>
+        </div>
+        <div id="textsection">
+            <div id="up">
+                <textarea id="text-left"></textarea>
+                <div id="drag-file">
+                    <label for="file-input">DRAG FILE OR CLICK</label>
+                    <input type="file" id="file-input" >
+                </div>
+            </div>
+            <div id="middle">
+                <select id="bit">
+                    <option value="BIT">BIT</option>
+                    <option value="224">224</option>
+                    <option value="256">256</option>
+                    <option value="384">384</option>
+                    <option value="512">512</option>
+                </select>
+            </div>
+            <div id="down">
+                <textarea id="text-right" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
